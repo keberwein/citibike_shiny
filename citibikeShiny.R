@@ -14,17 +14,19 @@ ui <- bootstrapPage(
     absolutePanel(top = 10, right = 10,
                   sliderInput("range", "Available Bikes", min(stations$availableBikes), max(stations$availableBikes),
                               value = range(stations$availableBikes), step = 1
-                  )
+                  ),
+                  checkboxInput("showdocks", "Available Docks", TRUE)
     )
 )
 
 server <- function(input, output, session) {
     
-
- 
     # Reactive expression for the data subsetted to what the user selected
     filteredData <- reactive({
-        subset(stations, stations$availableBikes >= input$range[1] & stations$availableBikes <= input$range[2])
+        if(!isTRUE(input$showdocks)){
+            subset(stations, stations$availableBikes >= input$range[1] & stations$availableBikes <= input$range[2] & stations$availableDocks > 0)
+        } else subset(stations, stations$availableBikes >= input$range[1] & stations$availableBikes <= input$range[2])
+        
     })
     
     output$map <- renderLeaflet({
@@ -64,7 +66,7 @@ server <- function(input, output, session) {
                             "<br><strong>Available Bikes: </strong>", 
                             obs_dat$availableBikes,
                             "<br><strong>Available Docks: </strong>", 
-                            obs_dat$availbaleDocks,
+                            obs_dat$availableDocks,
                             "<br><strong>Last Communication: </strong>",
                             obs_dat$lastCommunicationTime)
         
