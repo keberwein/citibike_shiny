@@ -1,8 +1,14 @@
 library(shiny)
 library(leaflet)
-library(RColorBrewer)
 library(jsonlite)
 library(dplyr)
+library(devtools)
+library(curl)
+
+# Check for required packages, install them if not installed.
+pkgs <-c('shiny', 'leaflet', 'jsonlite', 'curl', 'lambda.r', 'dplyr')
+for(p in pkgs) if(p %in% rownames(installed.packages()) == FALSE) {install.packages(p, repos='http://cran.us.r-project.org')}
+for(p in pkgs) suppressPackageStartupMessages(library(p, quietly=TRUE, character.only=TRUE))
 
 # Get data from citibike api.
 citibike <- fromJSON("http://citibikenyc.com/stations/json")

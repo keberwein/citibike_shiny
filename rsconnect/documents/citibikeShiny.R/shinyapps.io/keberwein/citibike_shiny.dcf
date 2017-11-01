@@ -1,0 +1,12 @@
+name: citibike_shiny
+title: citibike_shiny
+username:
+account: keberwein
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 231195
+bundleId: 1055194
+url: https://keberwein.shinyapps.io/citibike_shiny/
+when: 1509560119.71914
+asMultiple: FALSE
+asStatic: FALSE
