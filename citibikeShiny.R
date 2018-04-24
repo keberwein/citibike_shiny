@@ -42,8 +42,7 @@ server <- function(input, output, session) {
         leaflet(stations) %>% setView(lat = 40.7829, lng = -73.9654, zoom = 14) %>%
             addTiles()
     })
-    
-    
+        
     observe({
         obs_dat <- filteredData()
         
