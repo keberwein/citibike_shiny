@@ -81,7 +81,6 @@ server <- function(input, output, session) {
             addAwesomeMarkers(popup = popup_dat, icon = icons)
     })
     
-    
 }
 
 shinyApp(ui, server)
